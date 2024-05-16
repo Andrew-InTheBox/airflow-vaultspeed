@@ -1,0 +1,15 @@
+pandas
+SQLAlchemy
+psycopg2-binary
+pyodbc
+numpy
+openpyxl
+beautifulsoup4
+requests
+pymssql
+jaydebeapi
+apache-airflow-providers-amazon
+apache-airflow-providers-google
+apache-airflow-providers-postgres
+apache-airflow-providers-microsoft-mssql
+apache-airflow-providers-jdbc

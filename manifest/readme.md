@@ -1,0 +1,1 @@
+Use dir to keep log style manifest of already installed vaultspeed ETL and DDL code files.  Not currently used.
