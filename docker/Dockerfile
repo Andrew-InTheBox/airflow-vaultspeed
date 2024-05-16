@@ -30,4 +30,5 @@ RUN pip uninstall --yes azure-storage && \
 
 # Install Vaultspeed plugin
 COPY vs_fmc_plugin.zip /opt/airflow/plugins/vs_fmc_plugin.zip
-RUN pip install --upgrade /opt/airflow/plugins/vs_fmc_plugin.zip
+RUN pip install --upgrade /opt/airflow/plugins/vs_fmc_plugin.zip && \
+    unzip -o /opt/airflow/plugins/vs_fmc_plugin.zip -d /opt/airflow/plugins/
