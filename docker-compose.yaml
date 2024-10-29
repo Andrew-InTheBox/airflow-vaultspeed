@@ -38,7 +38,9 @@
 x-airflow-common:
   &airflow-common
   #image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.3.0}
-  build: ./docker
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -81,7 +83,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      #- ${AIRFLOW_PROJ_DIR:-.}/pg-init-scripts:/docker-entrypoint-initdb.d
       - postgres-db-volume:/var/lib/postgresql/data
     ports:
       - "5433:5432"
@@ -196,7 +197,6 @@ services:
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
-    # yamllint disable rule:line-length
     command:
       - -c
       - |
@@ -245,8 +245,15 @@ services:
         mkdir -p /sources/logs /sources/dags /sources/plugins
         chown -R "${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
         
-        # Unzip the vs_fmc_plugin.zip file and move the contents to /opt/airflow/plugins
-        #unzip -o /opt/airflow/plugins/vs_fmc_plugin.zip -d /opt/airflow/plugins/
+        # Initialize Airflow database and create admin user
+        airflow db init
+        airflow users create \
+          --username ${_AIRFLOW_WWW_USER_USERNAME} \
+          --firstname admin \
+          --lastname admin \
+          --role Admin \
+          --email admin@example.com \
+          --password ${_AIRFLOW_WWW_USER_PASSWORD}
         
         exec /entrypoint airflow version
     # yamllint enable rule:line-length
