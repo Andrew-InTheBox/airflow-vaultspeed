@@ -67,3 +67,46 @@ coverage.xml
 .hypothesis/
 .coverage.*
 coverage/
+
+# Ignore all files in the dags directory
+/dags/*
+
+# But do not ignore the dags directory itself
+!/dags/
+
+*.bin
+
+# Docker volumes and data directories
+/data/*
+!/data/.gitkeep
+/sources/*
+!/sources/.gitkeep
+postgres-db-volume/
+
+# MinIO data
+minio_data/
+
+# Local environment files
+.env*
+!.env.example
+
+# Superset local files
+superset_home/
+
+# Additional Docker-related
+docker-compose.override.y*ml
+
+# Runtime files
+*.pid
+*.sock
+
+# MinIO system files and metadata
+.minio.sys/
+data/.minio.sys/
+**/.minio.sys/
+*.bin
+
+# Local development certificates
+*.pem
+*.crt
+*.key
