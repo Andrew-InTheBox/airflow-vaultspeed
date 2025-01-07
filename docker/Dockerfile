@@ -25,8 +25,8 @@ RUN echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile.d/java.sh && \
 
 USER airflow
 
-# Copy the requirements.txt file into the container and install Python dependencies
-COPY requirements.txt .
+# Copy the requirements.txt file into the container - Updated path
+COPY docker/requirements.txt .
 RUN pip install -r requirements.txt
 
 # Fix a warning with the Azure provider and install Python dependencies
@@ -34,6 +34,19 @@ RUN pip uninstall --yes azure-storage && \
     pip install -U azure-storage-blob apache-airflow-providers-microsoft-azure>=1.1.0 flask_admin>=1.5.8 croniter>=0.3 \
     apache-airflow-providers-databricks jaydebeapi apache-airflow-providers-jdbc apache-airflow-providers-snowflake>=2.0.0 apache-airflow-providers-google
 
-# Install Vaultspeed plugin
-#COPY vs_fmc_plugin.zip /opt/airflow/plugins/vs_fmc_plugin.zip
-#RUN pip install --upgrade /opt/airflow/plugins/vs_fmc_plugin.zip
+# Install VaultSpeed plugin
+WORKDIR /opt/airflow/plugins
+COPY --chown=airflow:root plugins/vs_fmc_plugin.zip .
+
+# Create directories with correct permissions
+USER root
+RUN mkdir -p /home/airflow/.local && \
+    chown -R airflow:root /home/airflow/.local
+
+# Switch to airflow user for pip installation
+USER airflow
+RUN unzip vs_fmc_plugin.zip && \
+    pip install -e vs_fmc_plugin && \
+    rm vs_fmc_plugin.zip
+
+WORKDIR /opt/airflow
