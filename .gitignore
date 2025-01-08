@@ -1,63 +1,13 @@
-# Airflow-specific files
-/logs/*
-/dags/__pycache__/
-/plugins/*
-!/plugins/vs_fmc_plugin.zip
-airflow.cfg
-airflow.db
-webserver_config.py
-*.pid
-
-# Docker-specific
-.env
-docker-compose.override.yml
-
-# Data directories
-/data/*
-/sql/*
-/jdbc/*
-
 # Python-specific
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
+*.whl
+*.egg
 *.egg-info/
 .installed.cfg
-*.egg
-
-# IDE-specific files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Log files
-*.log
-logs/
-*.out
-
-# Local development files
-.python-version
 .pytest_cache/
 .coverage
 htmlcov/
@@ -68,45 +18,92 @@ coverage.xml
 .coverage.*
 coverage/
 
-# Ignore all files in the dags directory
-/dags/*
+# Virtual Environments
+env/
+.venv/
+venv/
+ENV/
 
-# But do not ignore the dags directory itself
-!/dags/
+# Build and Distribution
+dist/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+plugin_package/
+test_env/
+test_wheels/
 
-*.bin
-
-# Docker volumes and data directories
-/data/*
-!/data/.gitkeep
-/sources/*
-!/sources/.gitkeep
-postgres-db-volume/
-
-# MinIO data
-minio_data/
-
-# Local environment files
-.env*
-!.env.example
-
-# Superset local files
-superset_home/
-
-# Additional Docker-related
-docker-compose.override.y*ml
-
-# Runtime files
+# Airflow-specific
+/logs/*
+/dags/__pycache__/
+/plugins/*
+!/plugins/vs_fmc_plugin.zip
+airflow.cfg
+airflow.db
+webserver_config.py
 *.pid
 *.sock
 
-# MinIO system files and metadata
+# Docker-specific
+.env*
+!.env.example
+docker-compose.override.y*ml
+postgres-db-volume/
+superset_home/
+
+# Data and Source directories
+/data/*
+!/data/.gitkeep
+/sql/*
+/jdbc/*
+/sources/*
+!/sources/.gitkeep
+
+# MinIO specific
+minio_data/
 .minio.sys/
 data/.minio.sys/
 **/.minio.sys/
 *.bin
 
-# Local development certificates
+# IDE-specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Security and Certificates
 *.pem
 *.crt
 *.key
+
+# Log files
+*.log
+logs/
+*.out
+
+# Local development files
+.python-version
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore all files in the dags directory but keep the directory
+/dags/*
+!/dags/
+
+# Archive files
+*.zip
