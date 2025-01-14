@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include vs_fmc_plugin *.py
+recursive-include vs_fmc_plugin/hooks *.py
+recursive-include vs_fmc_plugin/operators *.py
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude *.pyo
+global-exclude .DS_Store
