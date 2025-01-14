@@ -13,23 +13,23 @@ setup(
         "vs_fmc_plugin": ["hooks/*.py", "operators/*.py"],
     },
     install_requires=[
-        "apache-airflow>=2.0.0",
-        "croniter>=0.3",
-        "flask_admin>=1.5.8",
-        "flask_appbuilder",
-        "flask_babel",
-        "apache-airflow-providers-microsoft-azure>=1.1.0",
-        "azure-storage-blob",
-        "apache-airflow-providers-databricks",
-        "jaydebeapi",
+        "apache-airflow>=2.8.1",
         "apache-airflow-providers-jdbc",
-        "apache-airflow-providers-snowflake>=2.0.0",
-        "apache-airflow-providers-google"
+        "apache-airflow-providers-snowflake",
+        "apache-airflow-providers-microsoft-azure",
+        "apache-airflow-providers-databricks",
+        "apache-airflow-providers-google",
+        "croniter",
+        "azure-storage-blob",
+        "flask-admin",
+        "flask-appbuilder",
+        "flask-babel",
+        "jaydebeapi"
     ],
     entry_points={
         "apache_airflow_provider": [
             "provider_info=vs_fmc_plugin.__init__:get_provider_info"
         ]
     },
-    python_requires=">=3.7"
+    python_requires=">=3.7,<4.0"
 )

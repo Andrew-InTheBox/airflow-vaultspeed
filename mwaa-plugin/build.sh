@@ -21,6 +21,9 @@ echo "5. Creating plugin package and collecting dependencies..."
 mkdir -p plugin_package
 cp dist/airflow_provider_vaultspeed-5.5.0.4-py3-none-any.whl plugin_package/
 cd plugin_package
+
+# Install dependencies using requirements.txt with constraints
+pip wheel --no-deps -w . ../dist/airflow_provider_vaultspeed-5.5.0.4-py3-none-any.whl
 pip wheel -r ../requirements.txt -w .
 
 echo "6. Creating plugins.zip..."

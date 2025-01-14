@@ -1,15 +1,13 @@
-# Core dependencies
-apache-airflow>=2.0.0
-croniter>=0.3
-flask_admin>=1.5.8
-flask_appbuilder
-flask_babel
+--constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt"
 
-# Provider-specific dependencies
-apache-airflow-providers-microsoft-azure>=1.1.0
-azure-storage-blob
-apache-airflow-providers-databricks
-jaydebeapi
 apache-airflow-providers-jdbc
-apache-airflow-providers-snowflake>=2.0.0
+apache-airflow-providers-snowflake
+apache-airflow-providers-microsoft-azure
+apache-airflow-providers-databricks
 apache-airflow-providers-google
+croniter
+azure-storage-blob
+flask-admin
+flask-appbuilder
+flask-babel
+jaydebeapi
